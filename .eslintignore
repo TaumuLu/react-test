@@ -3,15 +3,9 @@ backup
 dist
 public
 .vite
-idl
 
 !.lintstagedrc.cjs
 !.prettierrc.cjs
-
-pb.bundle.js
-pb.bundle.d.ts
-
-dev-dist
 
 backup
 

@@ -25,15 +25,6 @@ dist-ssr
 
 .vite
 
-pb.bundle.js
-pb.bundle.d.ts
-
-dev-dist
-
-.git.bfg-report/
-
 tinypngReport.json
-
-translate/*.csv
 
 stats.html

@@ -1,13 +1,5 @@
 {
-  "search.exclude": {
-    "**/idl": true,
-    "**/pb.bundle.*": true,
-    "**/mtp.cjs": true
-  },
   "cSpell.words": ["ischeckout"],
-  "protoc": {
-    "compile_all_path": "./idl"
-  },
   "cssModules.camelCase": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
