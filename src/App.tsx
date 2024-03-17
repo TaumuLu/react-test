@@ -4,9 +4,6 @@ import { Outlet } from 'react-router-dom'
 import viteLogo from '/vite.svg'
 
 import reactLogo from './assets/react.svg'
-import { TestAhooks } from './pages/ahooks'
-import { TestMobx } from './pages/mobx'
-import { TestPixi } from './pages/pixi'
 
 import './App.scss'
 
