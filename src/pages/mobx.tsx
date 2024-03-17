@@ -42,5 +42,5 @@ export const TestMobx = observer(() => {
     }, 1000)
   }, [])
 
-  return <div>x: {testStore.theField}</div>
+  return <div>mobx x: {testStore.theField}</div>
 })

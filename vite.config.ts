@@ -84,9 +84,9 @@ export default defineConfig(({ mode, command }) => {
     },
     css: {
       preprocessorOptions: {
-        scss: {
-          additionalData: `@use "sass:math"; @import "./src/styles/themes.scss"; @import "./src/styles/variable.scss"; @import "./src/styles/mixin.scss";`,
-        },
+        // scss: {
+        //   additionalData: `@use "sass:math"; @import "./src/styles/themes.scss"; @import "./src/styles/variable.scss"; @import "./src/styles/mixin.scss";`,
+        // },
       },
       modules: {
         scopeBehaviour: 'local',

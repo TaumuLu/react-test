@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import { Outlet } from 'react-router-dom'
 
 import viteLogo from '/vite.svg'
 
 import reactLogo from './assets/react.svg'
-import { TestAhooks } from './test/ahooks'
-import { TestMobx } from './test/mobx'
+import { TestAhooks } from './pages/ahooks'
+import { TestMobx } from './pages/mobx'
+import { TestPixi } from './pages/pixi'
 
-import './App.css'
+import './App.scss'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,8 +35,12 @@ function App() {
       <p className='read-the-docs'>
         Click on the Vite and React logos to learn more
       </p>
-      <TestAhooks />
-      <TestMobx />
+      <div className='router-list'>
+        <a href='/ahooks'>ahooks</a>
+        <a href='/mobx'>mobx</a>
+        <a href='/pixi'>pixi</a>
+      </div>
+      <Outlet />
     </>
   )
 }

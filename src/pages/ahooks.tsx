@@ -11,5 +11,5 @@ export const TestAhooks = () => {
     state.y = 2
   }, [])
 
-  return <div>x: {state.x}</div>
+  return <div>useReactive x: {state.x}</div>
 }
