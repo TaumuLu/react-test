@@ -1,4 +1,5 @@
-import { Container, Sprite, Stage } from '@pixi/react'
+import { Container, Sprite, Stage, Text } from '@pixi/react'
+import { TextStyle } from '@pixi/text'
 import { useTimeout } from 'ahooks'
 import { Sprite as ISprite } from 'pixi.js'
 import { useRef, useState } from 'react'
@@ -17,14 +18,26 @@ const TestImg = () => {
   }, 2000)
 
   return (
-    <Sprite
-      x={x}
-      ref={ref as any}
-      scale={scale}
-      width={200}
-      height={200}
-      image='test.jpg'
-    />
+    <>
+      <Sprite
+        x={x}
+        ref={ref as any}
+        // scale={scale}
+        width={200}
+        height={200}
+        image='test.jpg'
+      />
+      <Text
+        text={x.toString()}
+        style={
+          new TextStyle({
+            align: 'center',
+            fontSize: 24,
+            fill: '#ffffff',
+          })
+        }
+      />
+    </>
   )
 }
 
