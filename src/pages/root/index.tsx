@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import viteLogo from '/vite.svg'
+import reactLogo from '@/assets/react.svg'
 
-import reactLogo from './assets/react.svg'
+import { RouterPath } from '../../constant'
 
-import './App.scss'
+import './index.scss'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,9 +34,9 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <div className='router-list'>
-        <a href='/ahooks'>ahooks</a>
-        <a href='/mobx'>mobx</a>
-        <a href='/pixi'>pixi</a>
+        <a href={RouterPath.Ahooks}>ahooks</a>
+        <a href={RouterPath.Mobx}>mobx</a>
+        <a href={RouterPath.Pixi}>pixi</a>
       </div>
       <Outlet />
     </>
