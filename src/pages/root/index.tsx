@@ -37,6 +37,7 @@ function App() {
         <a href={RouterPath.Ahooks}>ahooks</a>
         <a href={RouterPath.Mobx}>mobx</a>
         <a href={RouterPath.Pixi}>pixi</a>
+        <a href={RouterPath.Render}>render</a>
       </div>
       <Outlet />
     </>

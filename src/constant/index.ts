@@ -3,4 +3,5 @@ export enum RouterPath {
   Ahooks = '/ahooks',
   Mobx = '/mobx',
   Pixi = '/pixi',
+  Render = '/render',
 }

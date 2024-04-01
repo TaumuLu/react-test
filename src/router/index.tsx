@@ -4,6 +4,7 @@ import { RouterPath } from '../constant'
 import { TestAhooks } from '../pages/ahooks'
 import { TestMobx } from '../pages/mobx'
 import { PixiReact } from '../pages/pixi'
+import { TestRender } from '../pages/render'
 import Root from '../pages/root'
 
 export const router = createBrowserRouter([
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: RouterPath.Ahooks,
         Component: TestAhooks,
+      },
+      {
+        path: 'render',
+        Component: TestRender,
       },
     ],
   },
