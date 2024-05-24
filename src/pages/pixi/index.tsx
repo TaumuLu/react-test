@@ -1,13 +1,19 @@
-import { TestPixiReact } from './pixi-react'
+import { Outlet } from 'react-router-dom'
 
-// import { TestPixiReactFiber } from './react-pixi-fiber'
+import { RouterPath } from '../../constant'
+
 import './index.scss'
 
-export const PixiReact = () => {
+export const PixiRoot = () => {
+  console.log(11111)
+
   return (
     <div className='pixi-react-root'>
-      <TestPixiReact />
-      {/* <TestPixiReactFiber /> */}
+      <div className='router-list'>
+        <a href={RouterPath.PixiMask}>PixiMask</a>
+        <a href={RouterPath.PixiReact}>PixiReact</a>
+      </div>
+      <Outlet />
     </div>
   )
 }

@@ -27,7 +27,7 @@
     }
   },
   "types": ["gsap/types"],
-  "include": ["src"],
+  "include": ["src", "typings/**/*", "packages/*/src"],
   "references": [
     {
       "path": "./tsconfig.node.json"

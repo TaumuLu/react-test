@@ -2,6 +2,9 @@ export enum RouterPath {
   Root = '/',
   Ahooks = '/ahooks',
   Mobx = '/mobx',
-  Pixi = '/pixi',
   Render = '/render',
+
+  Pixi = '/pixi',
+  PixiMask = '/pixi/mask',
+  PixiReact = '/pixi/react',
 }

@@ -39,7 +39,6 @@ const makeAutoObservable = <
     while (current && current !== objectPrototype) {
       Reflect.ownKeys(current).forEach(key => {
         if (key === $mobx || key === 'constructor') return
-        console.log(8888, current, key)
 
         annotations![key] = !overrides
           ? true

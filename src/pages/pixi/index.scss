@@ -1,6 +1,7 @@
 .pixi-react-root {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  background-color: #fff;
 
   > div {
     flex: 1;
