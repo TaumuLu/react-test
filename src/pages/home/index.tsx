@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import viteLogo from '/vite.svg'
-import reactLogo from '@/assets/react.svg'
+import reactLogo from '@/assets/icons/react.svg?url'
+import viteLogo from '@/assets/icons/vite.svg?url'
 
 import './index.scss'
 

@@ -16,10 +16,11 @@
 
   &-clip {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 2fr 1fr 2fr 1fr 2fr;
+    grid-template-rows: 1fr 1fr 2fr;
     gap: 0;
-    width: 300px; /* 你可以根据需要调整宽度 */
-    height: 300px; /* 你可以根据需要调整高度 */
+    width: 400px;
+    height: 400px;
 
     svg {
       width: 100%;
