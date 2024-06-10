@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
-import { RouterPath } from '../../constant'
+import { RouterPath } from '../../constant/router'
 
 import './index.scss'
 

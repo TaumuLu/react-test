@@ -1,47 +1,89 @@
-import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { AppstoreOutlined } from '@ant-design/icons'
+import { Layout, Menu, MenuProps } from 'antd'
+import { observer } from 'mobx-react-lite'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
-import viteLogo from '/vite.svg'
-import reactLogo from '@/assets/react.svg'
-
-import { RouterPath } from '../../constant'
+import { RouterPath } from '../../constant/router'
 
 import './index.scss'
 
-function App() {
-  const [count, setCount] = useState(0)
+const { Sider } = Layout
+
+type MenuItems = Required<MenuProps>['items']
+
+const items: MenuItems = [
+  {
+    key: RouterPath.Home,
+    label: 'React Test',
+    icon: <AppstoreOutlined />,
+    children: [
+      {
+        key: RouterPath.Root,
+        label: 'home',
+      },
+      {
+        key: RouterPath.Ahooks,
+        label: 'ahooks',
+      },
+      {
+        key: RouterPath.Mobx,
+        label: 'mobx',
+      },
+      {
+        key: RouterPath.Render,
+        label: 'render',
+      },
+    ],
+  },
+  {
+    key: RouterPath.Pixi,
+    label: 'Pixi Test',
+    icon: <AppstoreOutlined />,
+    children: [
+      {
+        key: RouterPath.PixiMask,
+        label: 'PixiMask',
+      },
+      {
+        key: RouterPath.PixiReact,
+        label: 'PixiReact',
+      },
+    ],
+  },
+  {
+    key: RouterPath.Svg,
+    label: 'Svg Test',
+    icon: <AppstoreOutlined />,
+    children: [
+      {
+        key: RouterPath.SvgNineSlice,
+        label: 'SvgNineSlice',
+      },
+    ],
+  },
+]
+
+export const Component = observer(() => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { pathname } = location
 
   return (
-    <>
-      <div>
-        <a href='https://vitejs.dev' target='_blank'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://react.dev' target='_blank'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
-      <div className='router-list'>
-        <a href={RouterPath.Ahooks}>ahooks</a>
-        <a href={RouterPath.Mobx}>mobx</a>
-        <a href={RouterPath.Pixi}>pixi</a>
-        <a href={RouterPath.Render}>render</a>
-      </div>
-      <Outlet />
-    </>
+    <Layout className='root-router'>
+      <Sider width='25%'>
+        <Menu
+          onClick={e => {
+            navigate(e.key)
+          }}
+          selectedKeys={[pathname]}
+          defaultOpenKeys={items.map(item => item.key) as any}
+          mode='inline'
+          items={items}
+        />
+      </Sider>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </Layout>
   )
-}
-
-export default App
+})

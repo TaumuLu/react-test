@@ -1,52 +1,23 @@
-#root {
-  width: 100%;
-  text-align: center;
-}
+.root-router {
+  flex: 1;
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  transition: filter 300ms;
-  will-change: filter;
-}
+  .ant-layout-sider {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+    .ant-layout-sider-children {
+      display: flex;
+      flex-direction: column;
+      overflow: scroll;
+      padding-bottom: 20px;
+    }
   }
 
-  to {
-    transform: rotate(360deg);
+  > .ant-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-.router-list {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
 }

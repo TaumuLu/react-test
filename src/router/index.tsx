@@ -1,19 +1,27 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import { RouterPath } from '../constant'
-import { TestAhooks } from '../pages/ahooks'
-import { TestMobx } from '../pages/mobx'
+import { RouterPath } from '../constant/router'
 import { PixiRoot } from '../pages/pixi'
 import { PixiMask } from '../pages/pixi/pixi-mask'
 import { PixiReact } from '../pages/pixi/pixi-react'
-import { TestRender } from '../pages/render'
-import Root from '../pages/root'
+import { TestAhooks } from '../pages/react/ahooks'
+import { TestMobx } from '../pages/react/mobx'
+import { TestRender } from '../pages/react/render'
+
+const Root = () => import('@/pages/root')
+const Home = () => import('@/pages/home')
+const SvgNineSlice = () => import('@/pages/svg/nineSlice')
 
 export const router = createBrowserRouter([
   {
     path: RouterPath.Root,
-    Component: Root,
+    lazy: Root,
     children: [
+      {
+        // path: RouterPath.Home,
+        index: true,
+        lazy: Home,
+      },
       {
         path: RouterPath.Mobx,
         Component: TestMobx,
@@ -26,19 +34,30 @@ export const router = createBrowserRouter([
         path: 'render',
         Component: TestRender,
       },
-    ],
-  },
-  {
-    path: RouterPath.Pixi,
-    Component: PixiRoot,
-    children: [
+      // pixi
       {
-        path: RouterPath.PixiMask,
-        Component: PixiMask,
+        path: RouterPath.Pixi,
+        Component: PixiRoot,
+        children: [
+          {
+            path: RouterPath.PixiMask,
+            Component: PixiMask,
+          },
+          {
+            path: RouterPath.PixiReact,
+            Component: PixiReact,
+          },
+        ],
       },
+      // svg
       {
-        path: RouterPath.PixiReact,
-        Component: PixiReact,
+        path: RouterPath.Svg,
+        children: [
+          {
+            path: RouterPath.SvgNineSlice,
+            lazy: SvgNineSlice,
+          },
+        ],
       },
     ],
   },

@@ -17,8 +17,7 @@ const envDir = './env'
 
 const isTrue = flag => flag === 'true'
 
-const pcRootValue = 192
-const h5RootValue = 108
+const rootValue = 192
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }) => {
@@ -70,6 +69,7 @@ export default defineConfig(({ mode, command }) => {
     server: {
       host: '0.0.0.0',
       open: isTrue(env.VITE_OPEN),
+      port: Number(env.VITE_PORT),
       proxy: {
         // '/api': {
         //   target: 'http://127.0.0.1:8089/',
@@ -79,7 +79,7 @@ export default defineConfig(({ mode, command }) => {
       },
     },
     define: {
-      __ROOT_VALUES__: JSON.stringify([pcRootValue, h5RootValue]),
+      __ROOT_VALUE__: JSON.stringify(rootValue),
       __COMMIT_HASH__: JSON.stringify(commitHash),
     },
     css: {
@@ -97,24 +97,17 @@ export default defineConfig(({ mode, command }) => {
       postcss: {
         plugins: [
           postCssPxToRem({
-            rootValue: input => {
-              if (input.file.includes('.mobile.scss')) {
-                return h5RootValue
-              }
-              return pcRootValue
+            rootValue: () => {
+              // if (input.file.includes('.rem.scss')) {
+              //   return otherRootValue
+              // }
+              return rootValue
             },
             propList: ['*'],
             exclude: input => {
-              if (/src(\\|\/)game/.test(input)) {
+              if (/rem\.scss$/.test(input)) {
                 return false
               }
-              if (/src(\\|\/)pages(\\|\/)login/.test(input)) {
-                return false
-              }
-              if (/src(\\|\/)pages(\\|\/)hall/.test(input)) {
-                return false
-              }
-              // TODO
               return true
             },
           }),
