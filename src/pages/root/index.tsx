@@ -15,9 +15,12 @@ export const Component = observer(() => {
   const location = useLocation()
   const { pathname } = location
 
+  const isRoot = pathname === RouterPath.Root
   useEffect(() => {
-    navigate(RouterPath.Home, { replace: true })
-  }, [pathname === RouterPath.Root])
+    if (isRoot) {
+      navigate(RouterPath.Home, { replace: true })
+    }
+  }, [isRoot])
 
   const menuConfig = useMemo(createMenuItemConfig, [])
 
