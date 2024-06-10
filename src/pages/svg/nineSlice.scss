@@ -1,0 +1,29 @@
+.svg-nineSlice {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-icon {
+    width: 200px;
+    height: 200px;
+
+    // svg {
+    //   height: 100%;
+    //   width: 100%;
+    // }
+  }
+
+  &-clip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    width: 300px; /* 你可以根据需要调整宽度 */
+    height: 300px; /* 你可以根据需要调整高度 */
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
