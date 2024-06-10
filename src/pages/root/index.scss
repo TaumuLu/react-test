@@ -6,13 +6,23 @@
     flex-direction: column;
     background-color: #fff;
     box-shadow: 1px 1px 6px 1px #666;
-    min-width: 200px !important;
+    position: relative;
+
+    &.isOpen {
+      min-width: 200px !important;
+    }
 
     .ant-layout-sider-children {
       display: flex;
       flex-direction: column;
       overflow: scroll;
       padding-bottom: 20px;
+    }
+
+    .ant-float-btn {
+      position: absolute;
+      top: 10px;
+      left: calc(100% + 10px);
     }
   }
 

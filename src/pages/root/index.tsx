@@ -1,6 +1,8 @@
-import { Layout, Menu } from 'antd'
+import { CloseOutlined, PlusOutlined } from '@ant-design/icons'
+import { FloatButton, Layout, Menu } from 'antd'
+import classNames from 'classnames'
 import { observer } from 'mobx-react-lite'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 import { RouterPath } from '../../constant/router'
@@ -14,6 +16,7 @@ export const Component = observer(() => {
   const navigate = useNavigate()
   const location = useLocation()
   const { pathname } = location
+  const [isOpen, setIsOpen] = useState(true)
 
   const isRoot = pathname === RouterPath.Root
   useEffect(() => {
@@ -26,7 +29,7 @@ export const Component = observer(() => {
 
   return (
     <Layout className='root-router'>
-      <Sider width='20%'>
+      <Sider width={isOpen ? '20%' : 0} className={classNames({ isOpen })}>
         <Menu
           onClick={e => {
             navigate(e.key)
@@ -34,6 +37,12 @@ export const Component = observer(() => {
           selectedKeys={[pathname]}
           mode='inline'
           {...menuConfig}
+        />
+        <FloatButton
+          icon={isOpen ? <CloseOutlined /> : <PlusOutlined />}
+          onClick={() => {
+            setIsOpen(!isOpen)
+          }}
         />
       </Sider>
       <Layout>
