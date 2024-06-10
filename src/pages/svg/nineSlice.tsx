@@ -50,35 +50,35 @@ export const Component = observer(() => {
         </svg>
 
         <svg viewBox='14 0 10 14'>
-          <use xlinkHref='#clip-bubble' clip-path='url(#12)' />
+          <use xlinkHref='#clip-bubble' clipPath='url(#12)' />
         </svg>
 
         <svg viewBox='0 0 21 19'>
-          <use xlinkHref='#clip-bubble' clip-path='url(#clip-top-right)' />
+          <use xlinkHref='#clip-bubble' clipPath='url(#clip-top-right)' />
         </svg>
 
         <svg viewBox='0 0 21 19'>
-          <use xlinkHref='#clip-bubble' clip-path='url(#clip-left)' />
+          <use xlinkHref='#clip-bubble' clipPath='url(#clip-left)' />
         </svg>
 
         <svg viewBox='0 0 21 19'>
-          <use xlinkHref='#clip-bubble' clip-path='url(#clip-center)' />
+          <use xlinkHref='#clip-bubble' clipPath='url(#clip-center)' />
         </svg>
 
         <svg viewBox='0 0 21 19'>
-          <use xlinkHref='#clip-bubble' clip-path='url(#clip-right)' />
+          <use xlinkHref='#clip-bubble' clipPath='url(#clip-right)' />
         </svg>
 
         <svg viewBox='0 0 21 19'>
-          <use xlinkHref='#clip-bubble' clip-path='url(#clip-bottom-left)' />
+          <use xlinkHref='#clip-bubble' clipPath='url(#clip-bottom-left)' />
         </svg>
 
         <svg viewBox='0 0 21 19'>
-          <use xlinkHref='#clip-bubble' clip-path='url(#clip-bottom)' />
+          <use xlinkHref='#clip-bubble' clipPath='url(#clip-bottom)' />
         </svg>
 
         <svg viewBox='0 0 21 19'>
-          <use xlinkHref='#clip-bubble' clip-path='url(#clip-bottom-right)' />
+          <use xlinkHref='#clip-bubble' clipPath='url(#clip-bottom-right)' />
         </svg>
       </div>
     </div>
