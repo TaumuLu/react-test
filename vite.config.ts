@@ -1,8 +1,10 @@
+import react from '@vitejs/plugin-react'
 import childProcess from 'child_process'
 import { resolve } from 'path'
 import postCssPxToRem from 'postcss-pxtorem'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig, loadEnv } from 'vite'
+import svgr from 'vite-plugin-svgr'
 
 import pwa from './config/pwa'
 
@@ -41,6 +43,19 @@ export default defineConfig(({ mode, command }) => {
       },
     },
     plugins: [
+      react(),
+      // https://github.com/pd4d10/vite-plugin-svgr
+      // https://github.com/nrwl/nx/issues/19282
+      svgr({
+        svgrOptions: {
+          // plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+          exportType: 'default',
+          ref: true,
+          svgo: false,
+          titleProp: true,
+        },
+        include: '**/*.svg',
+      }),
       // react({
       // babel: {
       //   plugins: [

@@ -27,7 +27,7 @@
       "@/*": ["src/*"]
     }
   },
-  "types": ["gsap/types"],
+  "types": ["gsap/types", "vite-plugin-svgr/client"],
   "include": ["src", "typings/**/*", "packages/*/src"],
   "references": [
     {
