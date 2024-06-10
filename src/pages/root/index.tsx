@@ -26,7 +26,7 @@ export const Component = observer(() => {
 
   return (
     <Layout className='root-router'>
-      <Sider width='25%'>
+      <Sider width='20%'>
         <Menu
           onClick={e => {
             navigate(e.key)

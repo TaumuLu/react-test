@@ -6,6 +6,7 @@
     flex-direction: column;
     background-color: #fff;
     box-shadow: 1px 1px 6px 1px #666;
+    min-width: 200px !important;
 
     .ant-layout-sider-children {
       display: flex;
