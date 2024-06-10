@@ -56,6 +56,9 @@ importers:
       mobx-react-lite:
         specifier: ^4.0.7
         version: 4.0.7(mobx@6.12.3)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)
+      mobx-store-inheritance:
+        specifier: file:./lib/mobx-store-inheritance
+        version: link:lib/mobx-store-inheritance
       nanoid:
         specifier: ^5.0.7
         version: 5.0.7
@@ -174,6 +177,8 @@ importers:
       vite-plugin-pwa:
         specifier: ^0.20.0
         version: 0.20.0(vite@5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1))(workbox-build@7.1.1)(workbox-window@7.1.0)
+
+  lib/mobx-store-inheritance: {}
 
 packages:
 

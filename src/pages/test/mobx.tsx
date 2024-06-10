@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite'
+import makeAutoObservable from 'mobx-store-inheritance'
 import { useEffect } from 'react'
-
-import makeAutoObservable from '@/library/mobx-store-inheritance'
 
 class BaseStore {
   baseField = 1
@@ -34,7 +33,7 @@ class TestStore extends BaseStore {
 
 export const testStore = new TestStore()
 
-export const TestMobx = observer(() => {
+export const Component = observer(() => {
   useEffect(() => {
     setTimeout(() => {
       testStore.changeTheMethod()

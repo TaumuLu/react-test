@@ -18,7 +18,7 @@ const Child = () => {
   return <div>111111</div>
 }
 
-export const TestRender = () => {
+export const Component = () => {
   const [isRender, setIsRender] = useState(true)
 
   useTimeout(() => {

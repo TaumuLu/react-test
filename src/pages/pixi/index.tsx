@@ -4,7 +4,7 @@ import { RouterPath } from '../../constant/router'
 
 import './index.scss'
 
-export const PixiRoot = () => {
+export const Component = () => {
   console.log(11111)
 
   return (

@@ -117,7 +117,7 @@ const render = async () => {
   })
 }
 
-export const PixiMask = () => {
+export const Component = () => {
   useEffect(() => {
     render()
   }, [])

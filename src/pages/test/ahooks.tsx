@@ -1,7 +1,7 @@
 import { useReactive } from 'ahooks'
 import { useEffect } from 'react'
 
-export const TestAhooks = () => {
+export const Component = () => {
   const state = useReactive({ x: 1, y: 1 })
 
   // 没用到 y 但是打印了2次，useReactive 并不能收集依赖

@@ -146,7 +146,7 @@ void main(void)
   )
 }
 
-export const PixiReact = () => {
+export const Component = () => {
   return (
     <div>
       <div>@pixi/react</div>

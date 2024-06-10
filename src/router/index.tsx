@@ -1,15 +1,21 @@
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
 
-import { RouterPath } from '../constant/router'
-import { PixiRoot } from '../pages/pixi'
-import { PixiMask } from '../pages/pixi/pixi-mask'
-import { PixiReact } from '../pages/pixi/pixi-react'
-import { TestAhooks } from '../pages/react/ahooks'
-import { TestMobx } from '../pages/react/mobx'
-import { TestRender } from '../pages/react/render'
+import { RouterPath } from '@/constant/router'
 
 const Root = () => import('@/pages/root')
 const Home = () => import('@/pages/home')
+
+// test
+const Ahooks = () => import('@/pages/test/ahooks')
+const Mobx = () => import('@/pages/test/mobx')
+const Render = () => import('@/pages/test/render')
+
+// pixi
+const PixiRoot = () => import('@/pages/pixi')
+const PixiMask = () => import('@/pages/pixi/pixi-mask')
+const PixiReact = () => import('@/pages/pixi/pixi-react')
+
+// svg
 const SvgNineSlice = () => import('@/pages/svg/nineSlice')
 
 export const routerObjects: RouteObject[] = [
@@ -24,28 +30,28 @@ export const routerObjects: RouteObject[] = [
       },
       {
         path: RouterPath.Mobx,
-        Component: TestMobx,
+        lazy: Mobx,
       },
       {
         path: RouterPath.Ahooks,
-        Component: TestAhooks,
+        lazy: Ahooks,
       },
       {
         path: RouterPath.Render,
-        Component: TestRender,
+        lazy: Render,
       },
       // pixi
       {
         path: RouterPath.Pixi,
-        Component: PixiRoot,
+        lazy: PixiRoot,
         children: [
           {
             path: RouterPath.PixiMask,
-            Component: PixiMask,
+            lazy: PixiMask,
           },
           {
             path: RouterPath.PixiReact,
-            Component: PixiReact,
+            lazy: PixiReact,
           },
         ],
       },
