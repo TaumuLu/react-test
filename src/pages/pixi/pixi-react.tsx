@@ -5,6 +5,8 @@ import * as PIXI from 'pixi.js'
 import { Container as IContainer, Sprite as ISprite } from 'pixi.js'
 import { useEffect, useRef, useState } from 'react'
 
+import testJpg from '@/assets/test.jpg'
+
 import { FpsTimer } from './fps'
 
 const TestImg = () => {
@@ -21,7 +23,7 @@ const TestImg = () => {
   // }, 2000)
 
   useEffect(() => {
-    const sprite = PIXI.Sprite.from('/test.jpg')
+    const sprite = PIXI.Sprite.from(testJpg)
     sprite.anchor.set(0.5)
     sprite.position.set(400, 400)
 
