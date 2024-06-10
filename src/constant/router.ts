@@ -1,7 +1,8 @@
 export enum RouterPath {
   Root = '/',
   Home = '/home',
-  Ahooks = '/ahooks',
+
+  Ahooks = '/react',
   Mobx = '/mobx',
   Render = '/render',
 }

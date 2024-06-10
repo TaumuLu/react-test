@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, RouteObject } from 'react-router-dom'
 
 import { RouterPath } from '../constant/router'
 import { PixiRoot } from '../pages/pixi'
@@ -12,13 +12,13 @@ const Root = () => import('@/pages/root')
 const Home = () => import('@/pages/home')
 const SvgNineSlice = () => import('@/pages/svg/nineSlice')
 
-export const router = createBrowserRouter([
+export const routerObjects: RouteObject[] = [
   {
     path: RouterPath.Root,
     lazy: Root,
     children: [
       {
-        // path: RouterPath.Home,
+        path: RouterPath.Root,
         index: true,
         lazy: Home,
       },
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
         Component: TestAhooks,
       },
       {
-        path: 'render',
+        path: RouterPath.Render,
         Component: TestRender,
       },
       // pixi
@@ -61,4 +61,6 @@ export const router = createBrowserRouter([
       },
     ],
   },
-])
+]
+
+export const router = createBrowserRouter(routerObjects)
