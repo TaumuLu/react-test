@@ -18,7 +18,7 @@ export const routerObjects: RouteObject[] = [
     lazy: Root,
     children: [
       {
-        path: RouterPath.Root,
+        path: RouterPath.Home,
         index: true,
         lazy: Home,
       },

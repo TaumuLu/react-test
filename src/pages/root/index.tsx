@@ -1,8 +1,9 @@
 import { Layout, Menu } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
+import { RouterPath } from '../../constant/router'
 import { createMenuItemConfig } from './menuItems'
 
 import './index.scss'
@@ -13,6 +14,10 @@ export const Component = observer(() => {
   const navigate = useNavigate()
   const location = useLocation()
   const { pathname } = location
+
+  useEffect(() => {
+    navigate(RouterPath.Home, { replace: true })
+  }, [pathname === RouterPath.Root])
 
   const menuConfig = useMemo(createMenuItemConfig, [])
 
