@@ -10,7 +10,7 @@ export enum RouterPath {
 export enum RouterPath {
   Pixi = '/pixi',
   PixiMask = '/pixi/mask',
-  PixiReact = '/pixi/react',
+  PixiShader = '/pixi/shader',
 }
 
 export enum RouterPath {

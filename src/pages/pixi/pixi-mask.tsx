@@ -1,126 +1,101 @@
-import { Application, Assets, Container, Graphics, Sprite, Text } from 'pixi.js'
-import { useEffect } from 'react'
+import * as PIXI from 'pixi.js'
 
-import { addFpsTimer } from './fps'
+const app = new PIXI.Application({ antialias: true, resizeTo: window })
 
-const render = async () => {
-  // Create a new application
-  const app = new Application()
+document.body.appendChild(app.view)
 
-  // Initialize the application
-  await app.init({ antialias: true, resizeTo: window })
+app.stage.eventMode = 'static'
 
-  // Append the application canvas to the document body
-  document.body.appendChild(app.view as any)
+const bg = PIXI.Sprite.from('https://pixijs.com/assets/bg_rotate.jpg')
 
-  app.stage.eventMode = 'static'
+bg.anchor.set(0.5)
 
-  // Load textures
-  await Assets.load([
-    'https://pixijs.com/assets/bg_rotate.jpg',
-    'https://pixijs.com/assets/bg_scene_rotate.jpg',
-    'https://pixijs.com/assets/light_rotate_2.png',
-    'https://pixijs.com/assets/light_rotate_1.png',
-    'https://pixijs.com/assets/panda.png',
-  ])
+bg.x = app.screen.width / 2
+bg.y = app.screen.height / 2
 
-  const bg = Sprite.from('https://pixijs.com/assets/bg_rotate.jpg')
+app.stage.addChild(bg)
 
-  bg.anchor.set(0.5)
+const container = new PIXI.Container()
 
-  bg.x = app.screen.width / 2
-  bg.y = app.screen.height / 2
+container.x = app.screen.width / 2
+container.y = app.screen.height / 2
 
-  app.stage.addChild(bg)
+// add a bunch of sprites
+const bgFront = PIXI.Sprite.from(
+  'https://pixijs.com/assets/bg_scene_rotate.jpg',
+)
 
-  const container = new Container()
+bgFront.anchor.set(0.5)
 
-  container.x = app.screen.width / 2
-  container.y = app.screen.height / 2
+const light2 = PIXI.Sprite.from('https://pixijs.com/assets/light_rotate_2.png')
 
-  // Add a bunch of sprites
-  const bgFront = Sprite.from('https://pixijs.com/assets/bg_scene_rotate.jpg')
+light2.anchor.set(0.5)
 
-  bgFront.anchor.set(0.5)
+const light1 = PIXI.Sprite.from('https://pixijs.com/assets/light_rotate_1.png')
 
-  const light2 = Sprite.from('https://pixijs.com/assets/light_rotate_2.png')
+light1.anchor.set(0.5)
 
-  light2.anchor.set(0.5)
+const panda = PIXI.Sprite.from('https://pixijs.com/assets/panda.png')
 
-  const light1 = Sprite.from('https://pixijs.com/assets/light_rotate_1.png')
+panda.anchor.set(0.5)
 
-  light1.anchor.set(0.5)
+container.addChild(bgFront, light2, light1, panda)
 
-  const panda = Sprite.from('https://pixijs.com/assets/panda.png')
+app.stage.addChild(container)
 
-  panda.anchor.set(0.5)
+// let's create a moving shape
+const thing = new PIXI.Graphics()
 
-  container.addChild(bgFront, light2, light1, panda)
+app.stage.addChild(thing)
+thing.x = app.screen.width / 2
+thing.y = app.screen.height / 2
+thing.lineStyle(0)
 
-  app.stage.addChild(container)
+container.mask = thing
 
-  // Let's create a moving shape mask
-  const thing = new Graphics()
+let count = 0
 
-  app.stage.addChild(thing)
-  thing.x = app.screen.width / 2
-  thing.y = app.screen.height / 2
+app.stage.on('pointertap', () => {
+  if (!container.mask) {
+    container.mask = thing
+  } else {
+    container.mask = null
+  }
+})
 
-  container.mask = thing
+const help = new PIXI.Text('Click or tap to turn masking on / off.', {
+  fontFamily: 'Arial',
+  fontSize: 12,
+  fontWeight: 'bold',
+  fill: 'white',
+})
 
-  let count = 0
+help.y = app.screen.height - 26
+help.x = 10
+app.stage.addChild(help)
 
-  app.stage.on('pointertap', () => {
-    if (!container.mask) {
-      container.mask = thing
-    } else {
-      container.mask = null
-    }
-  })
+app.ticker.add(() => {
+  bg.rotation += 0.01
+  bgFront.rotation -= 0.01
 
-  const help = new Text({
-    text: 'Click or tap to turn masking on / off.',
-    style: {
-      fontFamily: 'Arial',
-      fontSize: 12,
-      fontWeight: 'bold',
-      fill: 'white',
-    },
-  })
+  light1.rotation += 0.02
+  light2.rotation += 0.01
 
-  help.y = app.screen.height - 26
-  help.x = 10
-  app.stage.addChild(help)
+  panda.scale.x = 1 + Math.sin(count) * 0.04
+  panda.scale.y = 1 + Math.cos(count) * 0.04
 
-  addFpsTimer(app)
+  count += 0.1
 
-  // Animate the mask
-  app.ticker.add(() => {
-    bg.rotation += 0.01
-    bgFront.rotation -= 0.01
+  thing.clear()
 
-    light1.rotation += 0.02
-    light2.rotation += 0.01
-
-    panda.scale.x = 1 + Math.sin(count) * 0.04
-    panda.scale.y = 1 + Math.cos(count) * 0.04
-
-    count += 0.1
-
-    thing.clear()
-    thing.moveTo(-120 + Math.sin(count) * 20, -100 + Math.cos(count) * 20)
-    thing.lineTo(120 + Math.cos(count) * 20, -100 + Math.sin(count) * 20)
-    thing.lineTo(120 + Math.sin(count) * 20, 100 + Math.cos(count) * 20)
-    thing.lineTo(-120 + Math.cos(count) * 20, 100 + Math.sin(count) * 20)
-    thing.fill({ color: 0x8bc5ff, alpha: 0.4 })
-    thing.rotation = count * 0.1
-  })
-}
+  thing.beginFill(0x8bc5ff, 0.4)
+  thing.moveTo(-120 + Math.sin(count) * 20, -100 + Math.cos(count) * 20)
+  thing.lineTo(120 + Math.cos(count) * 20, -100 + Math.sin(count) * 20)
+  thing.lineTo(120 + Math.sin(count) * 20, 100 + Math.cos(count) * 20)
+  thing.lineTo(-120 + Math.cos(count) * 20, 100 + Math.sin(count) * 20)
+  thing.rotation = count * 0.1
+})
 
 export const Component = () => {
-  useEffect(() => {
-    render()
-  }, [])
-
-  return <></>
+  return null
 }

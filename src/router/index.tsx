@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
 
 import { RouterPath } from '@/constant/router'
@@ -13,12 +14,17 @@ const Render = () => import('@/pages/test/render')
 // pixi
 const PixiRoot = () => import('@/pages/pixi')
 const PixiMask = () => import('@/pages/pixi/pixi-mask')
-const PixiReact = () => import('@/pages/pixi/pixi-react')
+const PixiShader = () => import('@/pages/pixi/shader')
 
 // svg
 const SvgNineSlice = () => import('@/pages/svg/nineSlice')
 
-export const routerObjects: RouteObject[] = [
+export type MenuRouterObject = RouteObject & {
+  icon?: ReactNode
+  children?: MenuRouterObject[]
+}
+
+export const routerObjects: MenuRouterObject[] = [
   {
     path: RouterPath.Root,
     lazy: Root,
@@ -50,8 +56,8 @@ export const routerObjects: RouteObject[] = [
             lazy: PixiMask,
           },
           {
-            path: RouterPath.PixiReact,
-            lazy: PixiReact,
+            path: RouterPath.PixiShader,
+            lazy: PixiShader,
           },
         ],
       },

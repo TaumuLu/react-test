@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import testJpg from '@/assets/test.jpg'
 
-import { FpsTimer } from './fps'
+import { FpsTimer } from '../components/PixiFps'
 
 const TestImg = () => {
   const scale = 0.5
@@ -27,8 +27,8 @@ const TestImg = () => {
     sprite.anchor.set(0.5)
     sprite.position.set(400, 400)
 
-    const vertex = `attribute vec2 aVertexPosition;
-
+    const vertex = `
+attribute vec2 aVertexPosition;
 uniform mat3 projectionMatrix;
 
 varying vec2 vTextureCoord;
@@ -54,45 +54,29 @@ void main(void)
     gl_Position = filterVertexPosition();
     vTextureCoord = filterTextureCoord();
     vVertexPosition = aVertexPosition;
-}`
+}
+`
 
     // Fragment shader, in real use this would be much cleaner when loaded from a file
     // or embedded into the application as data resource.
     const fragment = `
-      //precision mediump float;
-      varying vec2 vTextureCoord;
-      varying vec2 vVertexPosition;
+uniform sampler2D uSampler;
+varying vec2 vTextureCoord;
+varying vec2 vVertexPosition;
 
-      uniform sampler2D uSampler;
-      uniform float angle;
+void main() {
+    // 计算像素点与圆心的距离
+    float distance = length(vVertexPosition - vec2(0.5));
 
-      #define PI 3.1415926538
+    // 如果距离大于圆的半径，则丢弃该像素
+    if (distance > 0.5) {
+        discard;
+    }
 
-      void main(void)
-      {
-          vec2 coord = vVertexPosition * vec2(2.0, -2.0) + vec2(-1.0,1.0);
-          if (coord.y != 0.0) {
-              float curAngle = atan(coord.x/coord.y);
-              if (coord.y < 0.0) {
-                  curAngle += PI;
-              } else if(coord.x < 0.0) {
-                  curAngle += PI * 2.0;
-              }
-
-              if (curAngle < angle)
-              {
-                  discard;
-              }
-          } else {
-              if (angle > PI * 1.5) {
-                  discard;
-              } else if (angle > PI * 0.5 && coord.x > 0.0) {
-                  discard;
-              }
-          }
-
-          gl_FragColor = texture2D(uSampler, vTextureCoord);
-      }`
+    // 输出纹理颜色
+    gl_FragColor = texture2D(uSampler, vTextureCoord);
+}
+`
 
     const container = ref.current
     const bounds = container.getBounds()

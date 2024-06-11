@@ -29,7 +29,6 @@ export const FpsTimer = (): any => {
       intervalFps && clearInterval(intervalFps)
     }
   }, [pixiApp])
+
   return null
 }
-
-export default FpsTimer

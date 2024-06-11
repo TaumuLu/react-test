@@ -9,11 +9,10 @@ import {
   DatabaseOutlined,
 } from '@ant-design/icons'
 import { MenuProps } from 'antd'
-import { ReactNode } from 'react'
 import { RouteObject } from 'react-router-dom'
 
 import { RouterPath } from '../../constant/router'
-import { routerObjects } from '../../router'
+import { MenuRouterObject, routerObjects } from '../../router'
 import { getEnumKeyByValue } from '../../utils'
 
 import './index.scss'
@@ -22,14 +21,12 @@ type MenuItem = Required<MenuProps>['items'][number]
 
 type MenuItems = MenuItem[]
 
-type NewRouterObject = RouteObject & { icon?: ReactNode }
-
 const createMenuItems = (
-  routers: RouteObject[],
-  fn?: (router: RouteObject) => void | NewRouterObject,
+  routers: MenuRouterObject[],
+  fn?: (router: MenuRouterObject) => void | MenuRouterObject,
 ): MenuItems => {
   return routers.map(router => {
-    const newRouter = (fn?.(router) || router) as NewRouterObject
+    const newRouter = fn?.(router) || router
     return {
       key: newRouter.path,
       label: getEnumKeyByValue(RouterPath, newRouter.path),
@@ -57,6 +54,7 @@ export const createMenuItemConfig = () => {
   const items = createMenuItems(routerObjects, router => {
     if (router.children) {
       defaultOpenKeys.push(router.path)
+
       return {
         ...router,
         icon: icons.shift(),
