@@ -97,5 +97,5 @@ app.ticker.add(() => {
 })
 
 export const Component = () => {
-  return null
+  return <div></div>
 }
