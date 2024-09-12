@@ -154,7 +154,7 @@ export const Component = () => {
         }}
       >
         <Container>
-          {/* <FpsTimer /> */}
+          <FpsTimer />
           <TestImg />
         </Container>
       </Stage>
